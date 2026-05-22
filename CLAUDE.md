@@ -29,8 +29,11 @@ accessibility remediation business. Three jobs:
   (entities serving 50,000+) and April 2028 (smaller entities, special
   districts).
 - The extension does NOT pause litigation risk — plaintiffs can still sue.
-- The HHS Section 504 rule was NOT extended — HHS-funded healthcare and
-  education entities are higher-urgency targets.
+- HHS also extended its Section 504 digital-accessibility deadlines
+  (interim final rule, May 2026): recipients with 15+ employees now have
+  until May 11, 2027, and recipients with fewer than 15 until May 10, 2028.
+  Like the Title II extension, this moves the deadlines, not the liability —
+  HHS-funded healthcare and education entities can still be sued today.
 - Lead outreach with continued litigation risk, not "deadline is imminent".
 
 ## Target entities
