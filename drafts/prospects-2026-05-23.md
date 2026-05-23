@@ -1,3 +1,34 @@
+Subject: 4 new outreach prospects
+To: erica.mcdevitt@curbeffect.com
+
+Here are 4 new prospects to consider for outreach:
+
+1. Maricopa County, AZ
+   URL: https://www.maricopa.gov/
+   Contact: Michele Ross, ADA Coordinator
+   Email: ADA.help@maricopa.gov
+   Source: https://www.maricopa.gov/5728/ADA-Accommodations
+
+2. University of Oregon
+   URL: https://www.uoregon.edu/
+   Contact: (role-based — no individual named on page), Digital Accessibility Architect
+   Email: ictaccess@uoregon.edu
+   Source: https://www.uoregon.edu/accessibility
+
+3. University of Arizona
+   URL: https://www.arizona.edu/
+   Contact: (role-based — no individual named on page), Digital Accessibility Coordinator
+   Email: accessibility@arizona.edu
+   Source: https://accessibility.arizona.edu/policies-governance/governance-charter
+
+4. King County Library System, WA
+   URL: https://kcls.org/
+   Contact: (role-based — no individual named on page), Library Access Coordinator
+   Email: access@kcls.org
+   Source: https://kcls.org/accessibility/
+
+---
+
 Hello,
 
 Do you know whether all of the PDFs and documents your organization posts online meet the accessibility standards now required under [ADA Title II](https://www.ada.gov/resources/2024-03-08-web-rule/)? Also, alternate

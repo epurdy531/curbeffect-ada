@@ -1,52 +1,31 @@
-Subject: 9 new outreach prospects
+Subject: 4 new outreach prospects
 To: erica.mcdevitt@curbeffect.com
 
-Here are 9 new prospects to consider for outreach:
+Here are 4 new prospects to consider for outreach:
 
-1. City of Bend, OR
-   URL: https://www.bendoregon.gov/
-   Contact: Cassandra Kehoe, Accessibility & Equity Manager (ADA Title II official)
-   Email: ckehoe@bendoregon.gov
+1. Stanislaus County, CA
+   URL: https://www.stancounty.com
+   Contact: Michael Herzog, ADA Title II and Civil Rights Title VI Coordinator
+   Email: herzogm@stancounty.com
+   Source: https://www.stancounty.com/accessibility/
 
-2. Hancock County, IN
-   URL: https://www.hancockin.gov/
-   Contact: Ryan Hartley, ADA Coordinator
-   Email: ryan.hartley@hancockin.gov
+2. City of Albuquerque, NM
+   URL: https://www.cabq.gov
+   Contact: (role-based — no named individual published), ADA Title II Coordinator, General Services Department
+   Email: ada.coordinator@cabq.gov
+   Source: https://www.cabq.gov/generalservices/americans-with-disabilities-act/contact
 
-3. Cuyahoga County, OH
-   URL: https://cuyahogacounty.gov/
-   Contact: Carolyn Pfiffner, ADA Coordinator (published email is a department address)
-   Email: ADA@CuyahogaCounty.gov
+3. University of Washington
+   URL: https://www.washington.edu/
+   Contact: Bree Callahan, ADA/504 Coordinator
+   Email: ada504@uw.edu (the ADA/504 team address; no direct email for the coordinator is publicly listed)
+   Source: https://www.washington.edu/ada/office-of-the-ada-coordinator/
 
-4. Garland Independent School District, TX
-   URL: https://www.garlandisd.net
-   Contact: Dr. Wendy Brower, Special Education / ADA & Section 504 Coordinator (students)
-   Email: wlbrower@garlandisd.net
-
-5. Jarrell Independent School District, TX
-   URL: https://www.jarrellisd.org
-   Contact: Bob Mabry, Assistant Superintendent / ADA Coordinator
-   Email: Bob.Mabry@JarrellISD.org
-
-6. University of Connecticut
-   URL: https://uconn.edu
-   Contact: Sarah Chipman, Director of Civil Rights Compliance; ADA/Section 504 Coordinator
-   Email: sarah.chipman@uconn.edu
-
-7. University of Maryland (College Park)
-   URL: https://www.umd.edu/
-   Contact: Emily Lucio, ADA Coordinator (published email is an office address)
-   Email: adacoordinator@umd.edu
-
-8. Miami-Dade Public Library System
-   URL: https://www.mdpls.org/
-   Contact: Mikeisha Watkins, Library ADA Coordinator
-   Email: watkinsm@mdpls.org
-
-9. Central Ohio Transit Authority (COTA)
-   URL: https://www.cota.com/
-   Contact: (role-based — no named individual published), ADA Coordinator
-   Email: ADAcoordinator@cota.com
+4. Oakland Public Library
+   URL: https://oaklandlibrary.org/
+   Contact: Mana Tominaga, Extended Services Coordinator (the library's published accessibility contact)
+   Email: mtominaga@oaklandlibrary.org
+   Source: https://oaklandlibrary.org/accessibility/
 
 ---
 

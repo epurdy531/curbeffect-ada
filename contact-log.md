@@ -32,3 +32,11 @@
 | Hawaii Legislature | | | webmaster@capitol.hawaii.gov | | Email – 2026-04-16 |
 | Wisconsin Legislature | | Nate Rohan; Jeff Ylvisaker | nate.rohan@legis.wisconsin.gov; Jeff.ylvisaker@legis.wisconsin.gov | | Email – 2026-04-16 |
 | Utah Legislature | | Trent Packer | tpacker@le.utah.gov | | Email – 2026-04-17 |
+| Stanislaus County, CA | https://www.stancounty.com | Michael Herzog | herzogm@stancounty.com | ADA Title II and Civil Rights Title VI Coordinator | |
+| City of Albuquerque, NM | https://www.cabq.gov | (role-based) | ada.coordinator@cabq.gov | ADA Title II Coordinator, General Services Dept (role-based email) | |
+| University of Washington | https://www.washington.edu/ | Bree Callahan | ada504@uw.edu | ADA/504 Coordinator (published email is the ADA/504 team address) | |
+| Oakland Public Library | https://oaklandlibrary.org/ | Mana Tominaga | mtominaga@oaklandlibrary.org | Extended Services Coordinator (library's published accessibility contact) | |
+| Maricopa County, AZ | https://www.maricopa.gov/ | Michele Ross | ADA.help@maricopa.gov | ADA Coordinator | |
+| University of Oregon | https://www.uoregon.edu/ | (role-based) | ictaccess@uoregon.edu | Digital Accessibility Architect (handles web pages & documents; no individual named on page) | |
+| University of Arizona | https://www.arizona.edu/ | (role-based) | accessibility@arizona.edu | Digital Accessibility Coordinator (no individual named on page) | |
+| King County Library System, WA | https://kcls.org/ | (role-based) | access@kcls.org | Library Access Coordinator (no individual named on page) | |

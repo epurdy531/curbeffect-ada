@@ -4,7 +4,7 @@
 Automates daily prospecting and outreach for CurbEffect, a digital
 accessibility remediation business. Three jobs:
 1. Daily accessibility-news digest emailed to Erica, plus a LinkedIn post draft
-2. A prospecting brief emailed to Erica: 10 new entities affected by ADA
+2. A prospecting brief emailed to Erica: 4 new entities affected by ADA
    Title II / Section 504, each with a contact, plus the outreach template
 3. A daily "entities to call" shortlist emailed to the business owner
 

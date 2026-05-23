@@ -1,14 +1,14 @@
 # Workflow #2 — Prospect Brief
 
 ## Purpose
-Find 10 new ADA Title II entities to approach, look up a contact for each,
+Find 4 new ADA Title II entities to approach, look up a contact for each,
 add them to the tracker, and email Erica a prospecting brief with the
 outreach template attached. Erica does all actual outreach by hand.
 
 ## Steps
 
-### 1. Find 10 new entities
-Use web search to identify 10 distinct organizations subject to ADA
+### 1. Find 4 new entities
+Use web search to identify 4 distinct organizations subject to ADA
 Title II — for example city and county governments, public school
 districts, public colleges and universities, courts, public libraries,
 and special districts. Favor entities likely to have many publicly posted
@@ -33,17 +33,17 @@ not publicly listed"), contact title, and a Source — the URL of the page
 where the contact was found.
 
 ### 3. Add the entities to the tracker
-Append each of the 10 entities to contact-log.md as a new table row,
+Append each of the 4 entities to contact-log.md as a new table row,
 filling in Entity, URL, Contact Name, Contact Email, and Title. Leave the
 Contact history column blank — these are prospects, not yet contacted.
 
 ### 4. Assemble the brief
 Build the email content in exactly this structure:
 
-    Subject: 10 new outreach prospects
+    Subject: 4 new outreach prospects
     To: erica.mcdevitt@curbeffect.com
 
-    Here are 10 new prospects to consider for outreach:
+    Here are 4 new prospects to consider for outreach:
 
     1. [Entity name]
        URL: [homepage URL]
@@ -51,7 +51,7 @@ Build the email content in exactly this structure:
        Email: [contact email]
        Source: [URL of the page where the contact was found]
 
-    [...entities 2-10 in the same format...]
+    [...entities 2-4 in the same format...]
 
     ---
 
@@ -64,5 +64,5 @@ date. Do NOT send anything — saving the draft is the final step.
 ## Notes
 - Every entity must genuinely be subject to ADA Title II. No private
   companies or federal agencies.
-- If you can't find 10 not already in contact-log.md, include as many as
+- If you can't find 4 not already in contact-log.md, include as many as
   you can and state the number in the email.
