@@ -4,25 +4,25 @@
 Automates daily prospecting and outreach for CurbEffect, a digital
 accessibility remediation business. Three jobs:
 1. Daily accessibility-news digest emailed to Erica, plus a LinkedIn post draft
-2. Outreach emails to new entities affected by ADA Title II / Section 504
+2. A prospecting brief emailed to Erica: 10 new entities affected by ADA
+   Title II / Section 504, each with a contact, plus the outreach template
 3. A daily "entities to call" shortlist emailed to the business owner
 
 ## Key files
-- entities.csv — master tracking database. Columns: name, homepage,
-  contact_name, contact_phone, remediation_vendor, status,
-  date_emailed, date_called, notes
+- contact-log.md — master tracking database (Markdown table). Columns:
+  Entity, URL, Contact Name, Contact Email, Title, Contact history
 - templates/outreach-email.md — the outreach email template
 - drafts/ — generated emails and posts land here for review before sending
 
 ## Rules (important)
 - NEVER send an email automatically. Always write drafts to drafts/
   for human review first.
-- Do not email any entity already in entities.csv with a date_emailed
-  within the last 7 days.
-- If an entity was emailed MORE than 7 days ago with no reply logged,
-  mark its list entry as "follow up".
-- Always append the cumulative list of already-emailed entities to the
-  bottom of outreach emails.
+- All workflows email Erica only; never email outside organizations
+  directly.
+- Never surface Colorado entities for outreach — not as workflow #2
+  prospects and not on the workflow #3 call list. Colorado entities already
+  in contact-log.md are kept only as historical records of past contact and
+  must never be actioned for follow-up.
 
 ## Messaging context (keep current)
 - DOJ extended the Title II web accessibility deadline to April 2027

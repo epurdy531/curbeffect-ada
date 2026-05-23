@@ -8,7 +8,7 @@ digest to drafts/ for review. Do NOT send email when running this file.
 ## Steps
 
 ### 1. Search for recent items
-Use web search to find items from the LAST 2 DAYS that reference any of:
+Use web search to find items from the LAST 7 DAYS that reference any of:
 - "Title II of the ADA"
 - the DOJ web accessibility rule for state and local governments
 - Section 504 digital accessibility requirements
@@ -22,9 +22,11 @@ Reddit; include any LinkedIn posts that do surface.
 
 ### 2. Filter
 Keep an item only if ALL are true:
-- It is dated within the last 3 days.
-- It is genuinely about digital accessibility law or enforcement, not a
-  generic tip or product ad.
+- It is dated within the last 7 days.
+- It is genuinely on-topic. Keep news as well as law-firm legal alerts and
+  analysis, advocacy-organization statements, notable lawsuits and
+  settlements, and substantive discussion threads. Exclude pure product ads
+  and generic "what is accessibility" explainers.
 - It does NOT already appear in the most recent existing digest file
   (check the newest file matching drafts/daily-digest-*.md).
 For each kept item, record: title, source name, date, and full URL.
