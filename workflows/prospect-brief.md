@@ -50,12 +50,34 @@ Build the email content in exactly this structure:
        Contact: [contact name], [title]
        Email: [contact email]
        Source: [URL of the page where the contact was found]
+       Suggested subject line: [short form of entity name]'s PDFs and ADA Title II
+       Suggested send time: [time] Mountain Time — recipient is in [time zone]; best send days Tuesday–Thursday
 
     [...entities 2-4 in the same format...]
 
     ---
 
     [the full contents of templates/outreach-email.md, pasted verbatim]
+
+For each prospect, derive the two suggestion lines as follows:
+
+- **Suggested subject line** — use the form "[Entity]'s PDFs and ADA Title II",
+  but with a short, common form of the entity's name so the subject stays under
+  about 50 characters — for example "UConn's PDFs and ADA Title II" rather than
+  the full university name.
+- **Suggested send time** — the time, in Mountain Time, that Erica should
+  schedule the email so it lands in the recipient's inbox at 10:15 a.m. their
+  local time. Determine the recipient's time zone from the entity's specific
+  location, then use:
+  - Recipient in Eastern Time → send 8:15 a.m. Mountain Time
+  - Recipient in Central Time → send 9:15 a.m. Mountain Time
+  - Recipient in Mountain Time → send 10:15 a.m. Mountain Time
+  - Recipient in Pacific Time → send 11:15 a.m. Mountain Time
+  State which time zone the recipient is in, and note that the best send days
+  are Tuesday–Thursday. If the entity is somewhere that does not observe
+  daylight saving time (Arizona), or in a state that spans two time zones, work
+  out the correct offset for that specific location and today's date instead of
+  using the table.
 
 ### 5. Save
 Save the assembled email to drafts/prospects-YYYY-MM-DD.md using today's

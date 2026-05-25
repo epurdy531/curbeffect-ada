@@ -40,3 +40,7 @@
 | University of Oregon | https://www.uoregon.edu/ | (role-based) | ictaccess@uoregon.edu | Digital Accessibility Architect (handles web pages & documents; no individual named on page) | |
 | University of Arizona | https://www.arizona.edu/ | (role-based) | accessibility@arizona.edu | Digital Accessibility Coordinator (no individual named on page) | |
 | King County Library System, WA | https://kcls.org/ | (role-based) | access@kcls.org | Library Access Coordinator (no individual named on page) | |
+| Gaston County Schools, NC | https://www.gaston.k12.nc.us | Beth Suber | bcsuber@gaston.k12.nc.us | ADA Coordinator | |
+| Dakota County, MN | https://www.co.dakota.mn.us/ | (role-based) | adacoordinator@co.dakota.mn.us | County ADA Coordinator (role-based email; no individual named on page) | |
+| Utah State University | https://www.usu.edu/ | (role-based) | accessibility@usu.edu | Digital Accessibility Services (role-based email; no individual named on page) | |
+| City of Seattle, WA | https://www.seattle.gov | (role-based) | adacoordinator@seattle.gov | Citywide ADA Coordinator (role-based email; no individual named on page) | |

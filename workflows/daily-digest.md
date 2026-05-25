@@ -54,7 +54,21 @@ Build the digest in exactly this structure:
 
     Open the LinkedIn composer: https://www.linkedin.com/feed/?shareActive=true
 
-### 5. Save
+### 5. Add hashtags to the LinkedIn post
+
+After the LinkedIn post text is written, choose 3 to 5 hashtags that fit that day's topic and add them as the last line of the LinkedIn post, separated from the post text by a blank line.
+
+Pick a mix for reach and relevance: one or two broad tags, two or three niche tags matching the specific topic, and where it fits, one sector tag for the audience the story concerns. Always include #a11y, the tag the accessibility community follows.
+
+Choose only from this pool:
+- Broad: #Accessibility, #DigitalAccessibility, #a11y, #InclusiveDesign, #DisabilityInclusion
+- Niche: #PDFAccessibility, #DocumentAccessibility, #PDFRemediation, #PDFUA, #WCAG, #ADACompliance, #ADATitleII, #Section508
+- Sector: #LocalGovernment, #GovTech, #HigherEducation, #K12, #PublicSector
+- Business: #WomenOwnedBusiness, #WomenInTech
+
+Tailor the set to the day's content rather than repeating one fixed list — for example, an enforcement or court-ruling story leans #ADACompliance, a school-related story leans #K12 or #HigherEducation, and a Section 504 item leans #Section508. The hashtags belong only on the LinkedIn post text, not on the summary.
+
+### 6. Save
 Save to drafts/daily-digest-YYYY-MM-DD.md using today's date. Create the
 drafts/ folder if needed. Do NOT send any email.
 
