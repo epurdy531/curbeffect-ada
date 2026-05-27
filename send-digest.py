@@ -88,6 +88,7 @@ def parse_digest(text):
 _URL_RE = re.compile(r"https?://[^\s<>\)]+")
 _MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^\s)]+)\)")
 _BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+_OL_ITEM_RE = re.compile(r"\d+\.\s+(.*)")
 
 
 def _linkify_and_format(escaped_line):
@@ -110,7 +111,13 @@ def _linkify_and_format(escaped_line):
     # Bare URLs next.
     def bare_url(m):
         url = m.group(0)
-        return stash(f'<a href="{url}">{url}</a>')
+        # Don't pull trailing sentence punctuation into the link; emit it
+        # as plain text after the anchor instead.
+        trailing = ""
+        while url and url[-1] in ".,;:!?":
+            trailing = url[-1] + trailing
+            url = url[:-1]
+        return stash(f'<a href="{url}">{url}</a>') + trailing
 
     line = _URL_RE.sub(bare_url, line)
 
@@ -127,42 +134,76 @@ def body_to_html(body):
     """Convert the digest body markdown into a simple HTML document.
 
     Handles: **bold**, [text](url) and bare URLs (clickable), '- ' bullet
-    lists, '---' horizontal rules, blank-line paragraph breaks, and single
-    newlines as <br>.
+    lists, '1.' ordered lists, '---' horizontal rules, blank-line paragraph
+    breaks, and single newlines as <br>.
     """
     out = []
-    in_list = False
+    list_type = None  # None, "ul", or "ol"
+    para = []  # consecutive non-blank plain lines, joined with <br>
+
+    def flush_para():
+        nonlocal para
+        if para:
+            out.append(f"<p>{'<br>'.join(para)}</p>")
+            para = []
 
     def close_list():
-        nonlocal in_list
-        if in_list:
-            out.append("</ul>")
-            in_list = False
+        nonlocal list_type
+        if list_type:
+            out.append(f"</{list_type}>")
+            list_type = None
 
-    for raw in body.splitlines():
+    def open_list(kind):
+        nonlocal list_type
+        if list_type != kind:
+            close_list()
+            out.append(f"<{kind}>")
+            list_type = kind
+
+    lines = body.splitlines()
+    for i, raw in enumerate(lines):
         stripped = raw.strip()
-        escaped = html.escape(raw)
 
         if stripped == "":
+            flush_para()
             close_list()
-            out.append("")  # paragraph gap
             continue
         if stripped == "---":
+            flush_para()
             close_list()
             out.append("<hr>")
             continue
 
         if stripped.startswith("- "):
-            if not in_list:
-                out.append("<ul>")
-                in_list = True
-            item = _linkify_and_format(html.escape(stripped[2:]))
-            out.append(f"<li>{item}</li>")
+            flush_para()
+            open_list("ul")
+            out.append(f"<li>{_linkify_and_format(html.escape(stripped[2:]))}</li>")
             continue
 
-        close_list()
-        out.append(f"<p>{_linkify_and_format(escaped)}</p>")
+        # Numbered lines become a real <ol> only for a SIMPLE list. If the next
+        # line is an indented continuation, this is a structured numbered record
+        # (e.g. a prospect/call-list entry with fields under each number), so we
+        # keep the literal number as text rather than starting a restarting <ol>.
+        ol = _OL_ITEM_RE.match(stripped)
+        next_is_continuation = (
+            i + 1 < len(lines)
+            and lines[i + 1][:1] in (" ", "\t")
+            and lines[i + 1].strip() != ""
+        )
+        if ol and not next_is_continuation:
+            flush_para()
+            open_list("ol")
+            out.append(f"<li>{_linkify_and_format(html.escape(ol.group(1)))}</li>")
+            continue
 
+        # Plain line: accumulate into the current paragraph so consecutive
+        # lines (e.g. a signature block) render as one tight block joined by
+        # <br>, not as separate spaced-out paragraphs. A blank line, list, or
+        # rule flushes the buffer into a <p>.
+        close_list()
+        para.append(_linkify_and_format(html.escape(raw)))
+
+    flush_para()
     close_list()
     inner = "\n".join(out)
     return (
@@ -174,9 +215,10 @@ def body_to_html(body):
 
 
 def body_to_text(body):
-    """Plain-text fallback: drop the ** bold markers, keep everything else
-    (URLs stay visible and readable as-is)."""
-    return _BOLD_RE.sub(r"\1", body)
+    """Plain-text fallback: render markdown links as 'text (url)', drop the
+    ** bold markers, and keep everything else (bare URLs stay as-is)."""
+    text = _MD_LINK_RE.sub(r"\1 (\2)", body)
+    return _BOLD_RE.sub(r"\1", text)
 
 
 def build_message(subject, recipient, body):

@@ -32,8 +32,9 @@ Keep an item only if ALL are true:
 For each kept item, record: title, source name, date, and full URL.
 
 ### 3. Write the summary paragraph
-Write ONE paragraph, 3-5 sentences, capturing the key themes across the
-kept items. It must be self-contained — it will be reused verbatim as a
+Write ONE short paragraph of 1-3 sentences capturing the key themes across
+the kept items — aim for roughly half the length of previous digests, tight
+and high-signal. It must be self-contained — it will be reused verbatim as a
 LinkedIn post, so it cannot refer to "the items below."
 
 ### 4. Assemble the digest

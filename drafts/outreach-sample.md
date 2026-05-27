@@ -1,3 +1,6 @@
+Subject: [Sample] CurbEffect outreach email
+To: erica.mcdevitt@curbeffect.com
+
 Hello,
 
 Do you know whether all of the PDFs and documents your organization posts online meet the accessibility standards now required under [ADA Title II](https://www.ada.gov/resources/2024-03-08-web-rule/)? Those standards apply to the documents themselves — alternate formats are only an acceptable substitute under narrow technical or legal exceptions.
