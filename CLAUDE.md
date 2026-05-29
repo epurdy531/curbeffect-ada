@@ -23,6 +23,11 @@ accessibility remediation business. Three jobs:
   prospects and not on the workflow #3 call list. Colorado entities already
   in contact-log.md are kept only as historical records of past contact and
   must never be actioned for follow-up.
+- For higher education, only community colleges are eligible for outreach.
+  Never surface universities or four-year colleges — not as workflow #2
+  email prospects, and not on the workflow #3 call list (follow-ups or new
+  cold-call targets). Universities already in contact-log.md are kept only
+  as historical records and must never be actioned for follow-up.
 
 ## Messaging context (keep current)
 - DOJ extended the Title II web accessibility deadline to April 2027
@@ -37,6 +42,6 @@ accessibility remediation business. Three jobs:
 - Lead outreach with continued litigation risk, not "deadline is imminent".
 
 ## Target entities
-State/local governments, public colleges & universities, courts, special
+State/local governments, public community colleges, courts, special
 districts, public schools, libraries, and HHS-funded healthcare/education
 organizations.

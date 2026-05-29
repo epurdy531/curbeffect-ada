@@ -2,8 +2,8 @@
 
 ## Purpose
 Find 4 new ADA Title II entities to approach, look up a contact for each,
-add them to the tracker, and email Erica a prospecting brief with the
-outreach template attached. Erica does all actual outreach by hand.
+add them to the tracker, and save 4 per-entity outreach drafts — one email
+per entity — for Erica to review. Erica does all actual outreach by hand.
 
 ## Steps
 
@@ -37,35 +37,29 @@ Append each of the 4 entities to contact-log.md as a new table row,
 filling in Entity, URL, Contact Name, Contact Email, and Title. Leave the
 Contact history column blank — these are prospects, not yet contacted.
 
-### 4. Assemble the brief
-Build the email content in exactly this structure:
+### 4. Assemble a per-entity draft for each prospect
+For EACH of the 4 prospects, build a separate draft email in exactly this
+structure (replace the placeholders, paste the outreach template verbatim):
 
-    Subject: 4 new outreach prospects
+    Subject: [short form of entity name]'s PDFs and ADA Title II
     To: erica.mcdevitt@curbeffect.com
 
-    Here are 4 new prospects to consider for outreach:
-
-    1. [Entity name]
-       URL: [homepage URL]
-       Contact: [contact name], [title]
-       Email: [contact email]
-       Source: [URL of the page where the contact was found]
-       Suggested subject line: [short form of entity name]'s PDFs and ADA Title II
-       Suggested send time: [time] Mountain Time — recipient is in [time zone]; best send days Tuesday–Thursday
-
-    [...entities 2-4 in the same format...]
+    Entity: [entity name]
+    Contact: [contact name], [title] — [contact email]
+    Source: [URL where the contact info was found]
+    Time zone: [recipient's time zone], so send around [X:XX a.m. Mountain Time] to land at 10:15 a.m. their time
 
     ---
 
     [the full contents of templates/outreach-email.md, pasted verbatim]
 
-For each prospect, derive the two suggestion lines as follows:
+Derive the Subject and Time zone lines as follows:
 
-- **Suggested subject line** — use the form "[Entity]'s PDFs and ADA Title II",
-  but with a short, common form of the entity's name so the subject stays under
-  about 50 characters — for example "UConn's PDFs and ADA Title II" rather than
-  the full university name.
-- **Suggested send time** — the time, in Mountain Time, that Erica should
+- **Subject** — use the form "[Entity]'s PDFs and ADA Title II", but with a
+  short, common form of the entity's name so the subject stays under about 50
+  characters — for example "UConn's PDFs and ADA Title II" rather than the
+  full university name.
+- **Time zone / send time** — the time, in Mountain Time, that Erica should
   schedule the email so it lands in the recipient's inbox at 10:15 a.m. their
   local time. Determine the recipient's time zone from the entity's specific
   location, then use:
@@ -75,16 +69,18 @@ For each prospect, derive the two suggestion lines as follows:
   - Recipient in Pacific Time → send 11:15 a.m. Mountain Time
   State which time zone the recipient is in, and note that the best send days
   are Tuesday–Thursday. If the entity is somewhere that does not observe
-  daylight saving time (Arizona), or in a state that spans two time zones, work
-  out the correct offset for that specific location and today's date instead of
-  using the table.
+  daylight saving time (Arizona), or in a state that spans two time zones,
+  work out the correct offset for that specific location and today's date
+  instead of using the table.
 
 ### 5. Save
-Save the assembled email to drafts/prospects-YYYY-MM-DD.md using today's
-date. Do NOT send anything — saving the draft is the final step.
+Save the four drafts as drafts/prospect-YYYY-MM-DD-1.md, ...-2.md, ...-3.md,
+and ...-4.md using today's date — numbered in the order the entities are
+listed in this run. Do NOT send anything; saving the drafts is the final step
+for this workflow. Sending is handled separately by run-prospect-brief.sh.
 
 ## Notes
 - Every entity must genuinely be subject to ADA Title II. No private
   companies or federal agencies.
-- If you can't find 4 not already in contact-log.md, include as many as
-  you can and state the number in the email.
+- If you can't find 4 not already in contact-log.md, produce as many drafts
+  as you can (numbered from 1) and skip the missing slots.
