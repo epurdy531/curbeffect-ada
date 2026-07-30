@@ -32,8 +32,10 @@ from pathlib import Path
 # GMAIL_APP_PASSWORD must be an app password for THIS account.
 SENDER = "admin@curbeffect.com"
 # When set, the digest is sent here regardless of the "To:" line in the
-# digest file. Set to None to fall back to the file's "To:" header.
-RECIPIENT_OVERRIDE = "erica.mcdevitt@curbeffect.com"
+# digest file. Set to None to fall back to the file's "To:" header. The
+# DIGEST_RECIPIENT env var overrides it (used by the daily true-draft job to
+# route drafts to erica.mcdevitt@ instead of info@).
+RECIPIENT_OVERRIDE = os.environ.get("DIGEST_RECIPIENT", "info@curbeffect.com")
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 465  # SSL
 DRAFTS_DIR = Path(__file__).resolve().parent / "drafts"
@@ -130,12 +132,20 @@ def _linkify_and_format(escaped_line):
     return line
 
 
-def body_to_html(body):
+def body_to_html(body, linkedin_friendly=False):
     """Convert the digest body markdown into a simple HTML document.
 
     Handles: **bold**, [text](url) and bare URLs (clickable), '- ' bullet
     lists, '1.' ordered lists, '---' horizontal rules, blank-line paragraph
     breaks, and single newlines as <br>.
+
+    When linkedin_friendly is True, an extra empty <p>&nbsp;</p> is emitted
+    after every content paragraph. Gmail and other web mail clients still
+    render this as a blank line so the inbox view looks the same, but
+    LinkedIn's post composer preserves the empty paragraph when an HTML
+    selection is pasted in — keeping the gap that LinkedIn would otherwise
+    collapse between adjacent <p> tags. Used for the daily PDF tip email,
+    which Erica copies from desktop Gmail into LinkedIn.
     """
     out = []
     list_type = None  # None, "ul", or "ol"
@@ -145,6 +155,8 @@ def body_to_html(body):
         nonlocal para
         if para:
             out.append(f"<p>{'<br>'.join(para)}</p>")
+            if linkedin_friendly:
+                out.append("<p>&nbsp;</p>")
             para = []
 
     def close_list():
@@ -221,13 +233,13 @@ def body_to_text(body):
     return _BOLD_RE.sub(r"\1", text)
 
 
-def build_message(subject, recipient, body):
+def build_message(subject, recipient, body, linkedin_friendly=False):
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = SENDER
     msg["To"] = recipient
     msg.set_content(body_to_text(body))
-    msg.add_alternative(body_to_html(body), subtype="html")
+    msg.add_alternative(body_to_html(body, linkedin_friendly=linkedin_friendly), subtype="html")
     return msg
 
 
@@ -273,7 +285,11 @@ def main():
         )
         return 1
 
-    msg = build_message(subject, recipient, body)
+    # Daily PDF-tip emails are copy-pasted into LinkedIn; render their HTML
+    # with explicit empty paragraphs between blocks so the paragraph gaps
+    # survive LinkedIn's HTML paste cleanup. Other digests render normally.
+    linkedin_friendly = digest_path.name.startswith("pdf-tip-")
+    msg = build_message(subject, recipient, body, linkedin_friendly=linkedin_friendly)
 
     try:
         context = ssl.create_default_context()

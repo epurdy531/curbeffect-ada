@@ -1,23 +1,24 @@
 # Workflow #4 — Daily PDF Remediation Tip
 
 ## Purpose
-Each day, email Erica one original, practical tip. Tips come from two angles: working with a PDF directly, and authoring accessible Word documents so the PDF exported from them starts out accessible. The tips are written from general PDF- and document-accessibility best practice. They are NOT excerpts, summaries, or paraphrases of the ISO 14289-1 (PDF/UA-1) standard. The standard is referred to only by clause number, as a pointer Erica can look up in her own licensed copy.
+Each day, email Erica one original, practical tip. Tips come from three angles: working with a PDF directly (Group A), authoring accessible Word documents so the exported PDF starts out accessible (Group B), and broader accessible-document practice drawn from the IAAP Accessible Document Specialist (ADS) Body of Knowledge (Group C). The tips are written from general PDF- and document-accessibility best practice. They are NOT excerpts, summaries, or paraphrases of the ISO 14289-1 (PDF/UA-1) standard, WCAG, or any other copyrighted source. Standards are referred to only by clause or success-criterion number, as pointers Erica can look up in her own copies.
 
 ## Important
-- Do NOT read, open, quote, excerpt, or closely paraphrase the ISO 14289-1 standard or any other copyrighted source. Write every tip in your own words from general knowledge of document accessibility.
-- Clause numbers below are reference pointers only. Citing a clause number is fine; reproducing what the clause says is not.
+- Do NOT read, open, quote, excerpt, or closely paraphrase the ISO 14289-1 standard, the WCAG text, or any other copyrighted source. Write every tip in your own words from general knowledge of document accessibility.
+- Clause numbers and WCAG success-criterion numbers below are reference pointers only. Citing a number is fine; reproducing what the clause or criterion says is not.
 
 ## Steps
 
 ### 1. Choose today's topic
-Tips come from two groups, and the workflow alternates between them day to day.
+Tips come from three groups, and the workflow rotates through them one per day in the fixed cycle Group A → Group B → Group C → Group A → …
 
-Look at the most recent entry in pdf-tips-log.md and determine which group it belongs to (match the topic name to the lists below if an older entry has no group label):
-- If the most recent tip was from Group A, today's tip is from Group B.
-- If the most recent tip was from Group B, today's tip is from Group A.
+Look at the most recent entry in pdf-tips-log.md and determine which group it belongs to (it is labelled A, B, or C; match the topic name to the lists below if an older entry has no group label). Today's group is the NEXT one in the cycle:
+- Most recent was Group A → today is Group B.
+- Most recent was Group B → today is Group C.
+- Most recent was Group C → today is Group A.
 - If pdf-tips-log.md does not exist or is empty, start with Group A, topic 1.
 
-Within the chosen group, pick the next topic in the list that has not yet been covered. If every topic in that group has already been covered, start that group again from the top, and this time choose a different practical angle so the new tip does not repeat the earlier one.
+Within the chosen group, pick the FIRST topic in the list that has not yet appeared anywhere in the log. Prefer a never-covered topic over revisiting an old one. Only when EVERY topic in that group has already been covered may you revisit one — and then pick the least-recently-covered topic and take a genuinely different practical angle, recording that angle in the log line so the new tip does not repeat an earlier one.
 
 **Group A — Working with the PDF itself**
 
@@ -61,7 +62,7 @@ Every Group B tip is about something the author does in Microsoft Word, and expl
 Write an original, practical tip on the chosen topic. It should be:
 - accurate and practitioner-level — genuinely useful to someone doing PDF remediation day to day
 - specific and concrete — name the actual menus, features, or steps involved rather than staying general
-- plain language, a few sentences to a short paragraph
+- plain language, a SINGLE short paragraph (roughly 80–130 words) — no separate intro line, no multi-paragraph body
 - focused on one clear, actionable idea
 
 For a Group B (Word) tip, describe what to do in Word and explain how it carries through to the exported PDF — what the document gains, or what remediation work it saves later.
@@ -72,13 +73,20 @@ Write every tip entirely in your own words from general document-accessibility b
 Build the email in exactly this format:
 
     Subject: daily pdf remediation tip
-    To: erica.mcdevitt@curbeffect.com
+    To: info@curbeffect.com
 
-    Topic: [topic name]
+    Document Accessibility Tip
 
-    [the tip — a few sentences to a short paragraph of practical advice]
+    📃Topic: [today's topic title]📄
 
-    Reference: for the exact normative wording, see PDF/UA clause [number] in your ISO 14289-1 copy.
+    [the tip as ONE single paragraph — one continuous line, no mid-paragraph wrapping, no separate intro line and no additional body paragraphs]
+
+    🔍 Reference: for the exact normative wording, see PDF/UA clause [number] in your ISO 14289-1 copy.
+
+
+    [#DocumentAccessibility](https://www.linkedin.com/feed/hashtag/documentaccessibility?trk=public_post_embed-text)  [#PDFRemediation](https://www.linkedin.com/feed/hashtag/pdfremediation?trk=public_post_embed-text)  [#PDFUA](https://www.linkedin.com/feed/hashtag/pdfua?trk=public_post_embed-text) [#WCAG](https://www.linkedin.com/feed/hashtag/wcag?trk=public_post_embed-text)  [#ADACompliance](https://www.linkedin.com/feed/hashtag/adacompliance?trk=public_post_embed-text)  [#ADATitleII](https://www.linkedin.com/feed/hashtag/adatitleii?trk=public_post_embed-text) [#Section508](https://www.linkedin.com/feed/hashtag/section508?trk=public_post_embed-text)  [#DigitalAccessibility](https://www.linkedin.com/feed/hashtag/digitalaccessibility?trk=public_post_embed-text)  [#PDFAccessibility](https://www.linkedin.com/feed/hashtag/pdfaccessibility?trk=public_post_embed-text)  [#ADATitle2](https://www.linkedin.com/feed/hashtag/adatitle2?trk=public_post_embed-text)  [#a11y](https://www.linkedin.com/feed/hashtag/a11y?trk=public_post_embed-text)  [#LocalGovernment](https://www.linkedin.com/feed/hashtag/localgovernment?trk=public_post_embed-text)  [#StateGovernment](https://www.linkedin.com/feed/hashtag/stategovernment?trk=public_post_embed-text)  [#AccessibleByDesign](https://www.linkedin.com/feed/hashtag/accessiblebydesign?trk=public_post_embed-text)
+
+The hashtag block is the same every day — use it verbatim.
 
 ### 4. Log and save
 - Append one line to pdf-tips-log.md recording today's date, the group (A or B), the topic name, and the clause number. Create the file if it does not exist.
@@ -87,4 +95,4 @@ Build the email in exactly this format:
 
 ## Notes
 - Each tip is original educational content, not a reproduction of any standard.
-- Keep tips short, specific, and focused — one idea, clearly explained.
+- Keep tips short, specific, and focused — one idea, clearly explained, in a single paragraph.

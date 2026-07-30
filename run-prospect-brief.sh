@@ -2,25 +2,43 @@
 #
 # run-prospect-brief.sh — CurbEffect prospect-brief automation (workflow #2)
 #
-# 1. Generates per-entity prospect drafts by running Claude Code headlessly
-#    (print mode) against workflows/prospect-brief.md: finds new ADA Title II
-#    entities, looks up contacts, appends them to contact-log.md, and saves
-#    one draft per entity to drafts/prospect-YYYY-MM-DD-N.md.
-# 2. Emails each of those drafts separately via send-digest.py — one email
-#    per prospect.
+# Takes a single argument: the category slug. Supported values:
+#   cities-east, cities-west, counties, courts
 #
-# Intended to be launched by launchd on weekdays at 05:00. All output
-# (stdout+stderr) from each step, plus timestamped status lines, is appended
-# to logs/prospect-brief.log. The launchd plist additionally captures raw
-# stdout/stderr to logs/prospect-brief.out.log and logs/prospect-brief.err.log.
+# For each category it:
+# 1. Generates ONE category-specific summary draft by running Claude Code
+#    headlessly (print mode) against workflows/prospect-brief-<slug>.md:
+#    finds 5 new ADA Title II entities in that category, looks up contacts,
+#    appends them to contact-log.md, and saves the summary to
+#    drafts/prospect-brief-<slug>-YYYY-MM-DD.md.
+# 2. Emails that single summary draft via send-digest.py. The per-entity
+#    outreach drafts are produced later by `bin/rails scan:by_email`, which
+#    Erica runs from the commands in the summary email.
+#
+# Intended to be launched by launchd on weekdays in 4 staggered slots
+# (one per category — see com.curbeffect.prospect-brief-<slug>.plist).
+# All output (stdout+stderr) from each step, plus timestamped status lines,
+# is appended to logs/prospect-brief.log. The launchd plist additionally
+# captures raw stdout/stderr to logs/prospect-brief.out.log and
+# logs/prospect-brief.err.log.
 
 set -u
+
+CATEGORY="${1:-}"
+case "$CATEGORY" in
+    cities-east|cities-west|counties|courts) ;;
+    *)
+        echo "usage: $0 <cities-east|cities-west|counties|courts>" >&2
+        exit 2
+        ;;
+esac
 
 PROJECT_DIR="/Users/ericamcdevitt/code/curbeffect-ada"
 CLAUDE="/opt/homebrew/bin/claude"
 PYTHON="/opt/homebrew/bin/python3"
 SECRETS="$HOME/.curbeffect-secrets.env"
 LOG="$PROJECT_DIR/logs/prospect-brief.log"
+WORKFLOW="workflows/prospect-brief-${CATEGORY}.md"
 
 # launchd runs with a minimal PATH; make sure Homebrew tools (and anything
 # claude shells out to, e.g. node) are findable.
@@ -31,7 +49,7 @@ cd "$PROJECT_DIR" || exit 1
 mkdir -p "$PROJECT_DIR/logs"
 
 # Timestamped log helper.
-log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >> "$LOG"; }
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$CATEGORY] $*" >> "$LOG"; }
 
 log "=== prospect-brief run starting ==="
 
@@ -43,36 +61,56 @@ else
     log "WARNING: secrets file $SECRETS not found; GMAIL_APP_PASSWORD may be unset"
 fi
 
-# 1. Generate the prospect brief headlessly.
-# Scoped to only the tools the workflow needs: web research plus read/write/
-# edit of contact-log.md and the draft. (Edit is required to append rows to
-# the existing contact-log.md.) Anything outside this allowlist is denied
-# automatically rather than prompting, which would hang a headless run.
-log "generating prospect brief via claude (print mode, workflows/prospect-brief.md) ..."
-"$CLAUDE" -p "Follow the instructions in workflows/prospect-brief.md exactly. Produce today's per-entity prospect drafts, update contact-log.md, and save each draft under drafts/. Do NOT send any email." \
-    --allowedTools "WebSearch" "WebFetch" "Read" "Write" "Edit" "Glob" >> "$LOG" 2>&1
+today=$(date +%F)
+DEDUP_FILE="$PROJECT_DIR/tmp/prospect-dedup.txt"
+NEW_PROSPECTS="$PROJECT_DIR/tmp/new-prospects-${CATEGORY}-${today}.md"
+mkdir -p "$PROJECT_DIR/tmp"
+# Start each run from a clean prospects file so a stale one can't be re-imported.
+rm -f "$NEW_PROSPECTS"
+
+# 0. Export the current DB entity list so the workflow dedups against the
+# DATABASE (now the master record) rather than the frozen, historical
+# contact-log.md. Without a fresh export, prospects added straight to the DB
+# on earlier runs wouldn't be excluded and would resurface as duplicates.
+log "exporting existing entities for dedup (outreach:export_dedup) ..."
+( cd "$PROJECT_DIR/outreach-db" && OUT="$DEDUP_FILE" bin/rails outreach:export_dedup ) >> "$LOG" 2>&1
+log "export_dedup exit code: $?"
+
+# 1. Generate the category-specific prospect brief headlessly.
+# Scoped to only the tools the workflow needs: web research plus read/write of
+# the dedup file, the new-prospects rows file, and the summary draft. The
+# workflow no longer touches contact-log.md — new prospects go straight to the
+# DB via outreach:import_prospects below. Anything outside this allowlist is
+# denied automatically rather than prompting, which would hang a headless run.
+log "generating prospect brief via claude (print mode, $WORKFLOW) ..."
+"$CLAUDE" -p "Follow the instructions in $WORKFLOW exactly. Produce today's single summary draft for the ${CATEGORY} category, write the new prospect rows to tmp/new-prospects-${CATEGORY}-${today}.md, and save the summary to drafts/. Do NOT edit contact-log.md. Do NOT send any email." \
+    --allowedTools "WebSearch" "WebFetch" "Read" "Write" "Glob" >> "$LOG" 2>&1
 claude_rc=$?
 log "claude exit code: $claude_rc"
 
-# 2. Email every per-entity prospect draft generated by this run. The workflow
-# saves each prospect to drafts/prospect-YYYY-MM-DD-N.md; send each one
-# separately so Erica gets one ready-to-forward email per prospect. The (N)
-# glob qualifier yields nothing — instead of erroring — when no drafts exist;
-# default lexical order matches the file numbering (-1.md, -2.md, ...).
-today=$(date +%F)
-drafts=("$PROJECT_DIR"/drafts/prospect-${today}-*.md(N))
-if (( ${#drafts} == 0 )); then
-    log "ERROR: no drafts/prospect-${today}-*.md found; skipping send"
+# 1b. Import this run's new prospects straight into the outreach-db so they show
+# up in the dashboard and become eligible for outreach. Only the rows the
+# workflow just wrote are inserted — existing entities are never re-touched
+# (this replaces the old full db:seed_from_log re-seed).
+if [ -f "$NEW_PROSPECTS" ]; then
+    log "importing new prospects into the DB (outreach:import_prospects) ..."
+    ( cd "$PROJECT_DIR/outreach-db" && bin/rails "outreach:import_prospects[$NEW_PROSPECTS]" ) >> "$LOG" 2>&1
+    log "import_prospects exit code: $?"
+else
+    log "WARNING: $NEW_PROSPECTS not found; no prospects imported this run"
+fi
+
+# 2. Email the single summary draft generated by this run. The workflow saves
+# it to drafts/prospect-brief-<slug>-YYYY-MM-DD.md.
+draft="$PROJECT_DIR/drafts/prospect-brief-${CATEGORY}-${today}.md"
+if [ ! -f "$draft" ]; then
+    log "ERROR: $draft not found; skipping send"
     send_rc=1
 else
-    send_rc=0
-    for draft in "${drafts[@]}"; do
-        log "sending prospect draft via send-digest.py: $draft"
-        "$PYTHON" "$PROJECT_DIR/send-digest.py" "$draft" >> "$LOG" 2>&1
-        rc=$?
-        log "send-digest.py exit code for $draft: $rc"
-        (( rc != 0 )) && send_rc=$rc
-    done
+    log "sending prospect-brief summary via send-digest.py: $draft"
+    "$PYTHON" "$PROJECT_DIR/send-digest.py" "$draft" >> "$LOG" 2>&1
+    send_rc=$?
+    log "send-digest.py exit code: $send_rc"
 fi
 
 log "=== prospect-brief run finished (claude=$claude_rc send=$send_rc) ==="

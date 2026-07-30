@@ -1,0 +1,18 @@
+Subject: daily linkedin data
+To: erica.mcdevitt@curbeffect.com
+
+**This week's accessibility coverage circled back to the same point from two different angles — GovTech's GAAD recap of state programs (Massachusetts, Pennsylvania, Arlington MA) and a Federal News Network commentary both told government leaders that the new April 2027 / April 2028 Title II deadlines do not pause current liability. Title II and Section 504 nondiscrimination duties already attach, so state and local governments, public schools, community colleges, libraries, and HHS-funded providers can be sued today regardless of the extension.**
+
+New items:
+- What's New in Digital Equity: Global Accessibility Awareness — Government Technology (GovTech), May 28, 2026 — https://www.govtech.com/network/whats-new-in-digital-equity-global-accessibility-awareness
+- How an impending digital accessibility compliance deadline impacts all levels of government — Federal News Network (Commentary), May 28, 2026 — https://federalnewsnetwork.com/commentary/2026/05/how-an-impending-digital-accessibility-compliance-deadline-impacts-all-levels-of-government/
+
+Note: Activity in window (May 26–June 2, 2026) was light. Both in-window items are commentary rather than hard news — they ride the post-GAAD news cycle to argue that the extended DOJ Title II deadlines (April 26, 2027 / April 26, 2028) and the parallel HHS Section 504 extensions (May 11, 2027 / May 10, 2028) do not pause Title II/Section 504 liability. GovTech's piece spotlights state-level governance moves (Massachusetts's Digital Accessibility and Equity Strategic Plan, Pennsylvania's baseline testing of 26 High-Impact Service Provider apps, Arlington MA's agendas/minutes portal) and cites the WebAIM finding that 98% of analyzed homepages have at least one WCAG failure. Federal News Network's piece frames non-compliance as a structural — not technical — problem, faulting agencies for treating accessibility as a one-off project rather than ongoing governance. Other in-window items were evaluated and set aside: the May 19 Law News piece on Missouri SB 907 and disability advocates' concerns, the May 13 GovTech "New Digital Accessibility Deadline, Same Obligation" piece, and the May 13 Goren analysis of Georgia HB 1470 (signed by Gov. Kemp as Act 458, effective July 1, 2026, creating a defense-side cause of action against "abusive" web-accessibility suits) all sit outside the 7-day window; HB 1470 itself remains worth tracking for healthcare and disability-rights challenges. The NFB v. DOJ/HHS APA suit in D. Md. was carried in the May 28 digest and not duplicated here; the DOJ Title II IFR comment period remains open through June 22 and the HHS Section 504 IFR comment docket (HHS-OCR-2026-0004) through July 6, with no new filings or rulemaking actions this week. Per the workflow, no old or off-topic links were added to pad the list.
+
+---
+Post to LinkedIn (paste this text into the composer):
+This week's accessibility coverage circled back to the same point from two different angles — GovTech's GAAD recap of state programs (Massachusetts, Pennsylvania, Arlington MA) and a Federal News Network commentary both told government leaders that the new April 2027 / April 2028 Title II deadlines do not pause current liability. Title II and Section 504 nondiscrimination duties already attach, so state and local governments, public schools, community colleges, libraries, and HHS-funded providers can be sued today regardless of the extension.
+
+#a11y #DigitalAccessibility #ADATitleII #LocalGovernment #PublicSector
+
+Open the LinkedIn composer: https://www.linkedin.com/feed/?shareActive=true

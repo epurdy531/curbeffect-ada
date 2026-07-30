@@ -8,3 +8,4 @@ logs/
 # Secrets — never commit
 *.env
 .curbeffect-secrets.env
+scan-inbox/

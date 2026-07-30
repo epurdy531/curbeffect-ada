@@ -41,7 +41,7 @@ LinkedIn post, so it cannot refer to "the items below."
 Build the digest in exactly this structure:
 
     Subject: daily linkedin data
-    To: erica.mcdevitt@curbeffect.com
+    To: info@curbeffect.com
 
     **[summary paragraph, in bold]**
 
