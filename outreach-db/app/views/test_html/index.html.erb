@@ -1,0 +1,21 @@
+<% content_for :title, "Test HTML" %>
+
+<h2>Test HTML files</h2>
+
+<%= form_with url: test_html_path, method: :post, multipart: true, class: "card inline" do %>
+  <input type="file" name="file" accept=".html,.htm">
+  <%= submit_tag "Upload HTML", class: "btn" %>
+  <span class="muted">Add any .html file (e.g. an HTML agenda) to view it here.</span>
+<% end %>
+
+<div class="card">
+  <% if @files.empty? %>
+    <p class="muted">No files yet — upload one above.</p>
+  <% else %>
+    <ul style="line-height:1.9">
+      <% @files.each do |f| %>
+        <li><%= link_to f, test_html_file_path(f), target: "_blank" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

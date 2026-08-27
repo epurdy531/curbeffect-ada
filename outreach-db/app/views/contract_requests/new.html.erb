@@ -1,0 +1,6 @@
+<% content_for :title, "Add contract request" %>
+
+<div class="card" style="max-width:560px">
+  <h3 style="margin:0 0 12px">Add contract request</h3>
+  <%= render "form", url: contract_requests_path, method: :post, submit_label: "Add" %>
+</div>

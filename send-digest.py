@@ -10,7 +10,7 @@ brief). Either way it reads the Subject:/To: header lines and the body below
 them, and sends a multipart email (HTML so bold text and links render and
 are clickable, plus a plain-text fallback).
 
-Login:    admin@curbeffect.com
+Login:    erica.mcdevitt@curbeffect.com
 Password: read from the GMAIL_APP_PASSWORD environment variable (never
           hardcoded).
 
@@ -30,7 +30,7 @@ from pathlib import Path
 # --- Configuration -------------------------------------------------------
 # The account that authenticates to Gmail SMTP and that mail is sent FROM.
 # GMAIL_APP_PASSWORD must be an app password for THIS account.
-SENDER = "admin@curbeffect.com"
+SENDER = "erica.mcdevitt@curbeffect.com"
 # When set, the digest is sent here regardless of the "To:" line in the
 # digest file. Set to None to fall back to the file's "To:" header. The
 # DIGEST_RECIPIENT env var overrides it (used by the daily true-draft job to

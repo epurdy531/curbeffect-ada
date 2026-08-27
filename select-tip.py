@@ -7,7 +7,7 @@ ones not yet sent in the current cycle, so tips do not repeat until all 365 have
 gone out. When the cycle is exhausted it resets and a fresh random cycle begins.
 
 It reads tips-365.md, writes a ready-to-send email draft (same envelope the old
-workflow produced: subject, "Document Accessibility Tip" header, Topic line,
+workflow produced: subject, "Document Accessibility Tip of the Day" header, Topic line,
 the tip paragraph, a Reference line, and the standard hashtag footer), records
 the chosen tip number in the cycle state file, and appends a human-readable line
 to the send log.
@@ -123,7 +123,7 @@ def main():
     draft = (
         "Subject: daily pdf remediation tip\n"
         "To: info@curbeffect.com\n\n"
-        "Document Accessibility Tip\n\n"
+        "Document Accessibility Tip of the Day\n\n"
         "\U0001F4C3Topic: %s\U0001F4C4\n\n"
         "%s\n\n"
         "\U0001F50D Reference: %s\n\n\n"

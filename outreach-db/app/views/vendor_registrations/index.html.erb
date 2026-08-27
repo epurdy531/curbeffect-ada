@@ -1,0 +1,52 @@
+<% content_for :title, "Vendor Portal" %>
+
+<div style="display:flex; align-items:center; justify-content:space-between; margin:6px 0">
+  <h3 style="margin:0">State vendor registration portals</h3>
+  <%= link_to "+ Add entry", new_vendor_registration_path, class: "btn" %>
+</div>
+<p class="muted" style="margin:0 0 14px">
+  Click a <strong>state</strong> to edit it (add your username, mark registered).
+  Click the <strong>portal link</strong> to open the site and log in.
+  <%= @registrations.where(is_registered: true).count %> of <%= @registrations.count %> marked registered.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th class="col-1">State</th>
+      <th class="col-2">Vendor Portal City (or entire state)</th>
+      <th class="col-3">Vendor portal</th>
+      <th class="col-4">Registered?</th>
+      <th class="col-1">Username</th>
+      <th class="col-1">Password</th>
+      <th class="col-3">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registrations.each do |r| %>
+      <tr>
+        <td><%= link_to r.state, edit_vendor_registration_path(r) %></td>
+        <td>
+          <%= r.city.presence || content_tag(:span, "—", class: "muted") %>
+        </td>
+        <td>
+          <% if r.vendor_url.present? %>
+            <%= link_to r.vendor_url, r.vendor_url, target: "_blank", rel: "noopener" %>
+          <% else %>
+            <span class="muted">— (add a URL)</span>
+          <% end %>
+        </td>
+        <td>
+          <% if r.is_registered %>
+            <span class="pill" style="background:#d8f0dd;color:#1c6b32">Yes</span>
+          <% else %>
+            <span class="muted">No</span>
+          <% end %>
+        </td>
+        <td><%= r.registration_username.presence || content_tag(:span, "—", class: "muted") %></td>
+        <td><%= r.password.presence || content_tag(:span, "—", class: "muted") %></td>
+        <td><%= r.notes.presence || content_tag(:span, "—", class: "muted") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

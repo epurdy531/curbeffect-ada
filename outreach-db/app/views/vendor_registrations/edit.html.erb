@@ -1,0 +1,37 @@
+<% content_for :title, "Edit #{@registration.state}" %>
+
+<div class="card" style="max-width:560px">
+  <h3 style="margin:0 0 12px"><%= @registration.state %></h3>
+
+  <% if @registration.errors.any? %>
+    <div class="errors">
+      <%= @registration.errors.full_messages.to_sentence %>
+    </div>
+  <% end %>
+
+  <%= form_with model: @registration, url: vendor_registration_path(@registration), method: :patch do |f| %>
+    <%= f.label :vendor_url, "Vendor portal URL" %>
+    <%= f.url_field :vendor_url, placeholder: "https://…" %>
+
+    <label style="margin-top:14px">
+      <%= f.check_box :is_registered %>
+      Registered here
+    </label>
+
+    <%= f.label :registration_username, "Registration username" %>
+    <%= f.text_field :registration_username, placeholder: "the username you registered with" %>
+    <%= f.label :password, "Registration Password" %>
+    <%= f.text_field :password, placeholder: "the password you registered with" %>
+
+    <%= f.label :city, "City" %>
+    <%= f.text_field :city, placeholder: "Vendor Portal City - Default is State Level Vendor Portal" %>
+
+    <%= f.label :notes, "Notes" %>
+    <%= f.text_field :notes, placeholder: "Additional notes" %>
+
+    <div style="margin-top:16px; display:flex; gap:10px">
+      <%= f.submit "Save", class: "btn" %>
+      <%= link_to "Cancel", vendor_registrations_path, class: "btn secondary" %>
+    </div>
+  <% end %>
+</div>

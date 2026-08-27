@@ -1,0 +1,33 @@
+<% content_for :title, "Entities" %>
+
+<%= form_with url: entities_path, method: :get, class: "inline", style: "margin-bottom:14px" do %>
+  <input type="text" name="q" value="<%= params[:q] %>" placeholder="Search name or URL…" style="width:260px">
+  <select name="priority">
+    <option value="">All priorities</option>
+    <% %w[High Medium Low].each do |p| %>
+      <option value="<%= p %>" <%= "selected" if params[:priority] == p %>><%= p %></option>
+    <% end %>
+  </select>
+  <select name="state">
+    <option value="">All states</option>
+    <% @states.each do |s| %>
+      <option value="<%= s %>" <%= "selected" if params[:state] == s %>><%= s %></option>
+    <% end %>
+  </select>
+  <label class="muted" style="margin:0 0 0 6px">Sort:</label>
+  <select name="sort">
+    <% { "priority" => "Priority", "state" => "State", "call_date" => "Call date (recent first)" }.each do |val, lbl| %>
+      <option value="<%= val %>" <%= "selected" if @sort == val %>><%= lbl %></option>
+    <% end %>
+  </select>
+  <%= submit_tag "Apply", class: "btn secondary" %>
+  <span class="muted"><%= @active.size %> active · <%= @inactive.size %> do-not-engage</span>
+<% end %>
+
+<h3 style="margin:6px 0">Active contacts</h3>
+<%= render "table", entities: @active %>
+
+<% if @inactive.any? %>
+  <h3 style="margin:26px 0 6px; color:#5a6675">Do not engage further <span class="muted">(continue_contact = false)</span></h3>
+  <%= render "table", entities: @inactive %>
+<% end %>

@@ -1,0 +1,36 @@
+<% if @contract_request.errors.any? %>
+  <div class="errors">
+    <%= @contract_request.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+<%= form_with model: @contract_request, url: url, method: method do |f| %>
+  <%= f.label :organization_name, "Organization name" %>
+  <%= f.text_field :organization_name, placeholder: "e.g. City of Effingham, IL" %>
+
+  <%= f.label :government_type, "Government type" %>
+  <%= f.select :government_type,
+        ContractRequest::GOVERNMENT_TYPES,
+        { include_blank: "— select —" } %>
+
+  <%= f.label :status, "Status" %>
+  <%= f.select :status,
+        ContractRequest::STATUSES,
+        { include_blank: "— select —" } %>
+
+  <%= f.label :due_date, "Due date" %>
+  <%= f.date_select :due_date,
+        { include_blank: true, start_year: 2026, end_year: Date.today.year + 3, order: [:month, :day, :year] },
+        { style: "width:auto; display:inline-block; margin-right:6px" } %>
+
+  <%= f.label :rfp_url, "RFP URL" %>
+  <%= f.url_field :rfp_url, placeholder: "https://…" %>
+
+  <%= f.label :notes, "Notes" %>
+  <%= f.text_area :notes, rows: 4, placeholder: "Notes about this RFP…" %>
+
+  <div style="margin-top:16px; display:flex; gap:10px">
+    <%= f.submit submit_label, class: "btn" %>
+    <%= link_to "Cancel", contract_requests_path, class: "btn secondary" %>
+  </div>
+<% end %>

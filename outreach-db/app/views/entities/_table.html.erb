@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr><th>Priority</th><th>State</th><th>Entity</th><th>Contact</th><th>Platform</th><th>Call Date</th><th>Email Date</th><th>HTML?</th><th>Last scan</th><th></th></tr>
+  </thead>
+  <tbody>
+    <% entities.each do |e| %>
+      <% rep = e.pdf_documents.map(&:verapdf_report).compact %>
+      <% untagged = rep.count { |r| r.tagged == false } %>
+      <tr>
+        <td><% if e.priority.present? %><span class="pill <%= e.priority %>"><%= e.priority %></span><% end %></td>
+        <td class="muted"><%= e.state %></td>
+        <td><%= link_to e.entity_name.presence || e.url, entity_path(e) %></td>
+        <td><%= e.contact_name %> <span class="muted"><%= e.contact_email unless e.contact_email.to_s.include?("placeholder.invalid") %></span></td>
+        <td class="muted"><%= e.platform %></td>
+        <td class="muted"><%= e.call_date %></td>
+        <td class="muted"><%= e.email_date %></td>
+        <td class="muted"><%= e.html_present.nil? ? "" : (e.html_present ? "Yes" : "No") %></td>
+        <td>
+          <% if rep.any? %>
+            <%= rep.size %> PDFs ·
+            <% if untagged > 0 %><span class="untagged"><%= untagged %> untagged</span><% else %><span class="tagged">0 untagged</span><% end %>
+          <% else %><span class="muted">—</span><% end %>
+        </td>
+        <td style="white-space:nowrap">
+          <%= button_to "Scan", entity_scan_path(e), class: "btn secondary", target: "_blank", form: { style: "display:inline; margin:0" } %>
+          <%= button_to "Delete", entity_path(e), method: :delete, class: "btn danger",
+                form: { style: "display:inline; margin:0",
+                        onsubmit: "return confirm('Delete #{j(e.entity_name.presence || e.url)}? This also removes its scanned PDFs and reports.')" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

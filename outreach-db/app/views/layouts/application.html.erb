@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "CurbEffect Dashboard" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <style>
+      body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; color: #1a2330; background: #f4f6f9; }
+      header { background: #14304a; color: #fff; padding: 12px 20px; display: flex; align-items: center; gap: 18px; }
+      header a { color: #cfe2ff; text-decoration: none; font-weight: 600; }
+      header .brand { color: #fff; font-size: 18px; font-weight: 700; }
+      main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+      table { border-collapse: collapse; width: 100%; background: #fff; }
+      th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #e3e8ef; font-size: 14px; vertical-align: top; }
+      th { background: #eef2f7; position: sticky; top: 0; }
+      .pill { padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; }
+      .High { background: #fde2e1; color: #a3231b; } .Medium { background: #fff3cd; color: #8a6d00; } .Low { background: #e3e8ef; color: #5a6675; }
+      .untagged { color: #a3231b; font-weight: 700; } .tagged { color: #5a6675; }
+      .flash { padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; }
+      .flash.notice { background: #d8f0dd; color: #1c6b32; } .flash.alert { background: #fde2e1; color: #a3231b; }
+      .btn { display: inline-block; background: #14304a; color: #fff; padding: 7px 13px; border-radius: 6px; border: 0; text-decoration: none; font-weight: 600; cursor: pointer; font-size: 14px; }
+      .btn.secondary { background: #5a6675; }
+      input[type=text], input[type=url], input[type=email], select, textarea { width: 100%; padding: 7px; border: 1px solid #c3ccd8; border-radius: 5px; font-size: 14px; box-sizing: border-box; }
+      label { display: block; font-weight: 600; font-size: 13px; margin: 10px 0 3px; }
+      .card { background: #fff; border: 1px solid #e3e8ef; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+      .inline { display: flex; gap: 8px; align-items: center; }
+      .muted { color: #6b7686; font-size: 13px; }
+      .errors { background: #fde2e1; color: #a3231b; padding: 10px; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span class="brand">CurbEffect</span>
+      <%= link_to "Contract Requests", contract_requests_path %>
+      <%= link_to "Entities", entities_path %>
+      <%= link_to "+ Add entity", new_entity_path %>
+      <%= link_to "Test HTML", test_html_path %>
+      <% if Rails.env.development? %><%= link_to "Vendor Portal", vendor_registrations_path %><% end %>
+      <%= form_with url: scan_url_path, method: :post, class: "inline", style: "margin-left:auto" do %>
+        <input type="text" name="url" placeholder="Scan a URL…" style="width:240px">
+        <%= submit_tag "Scan", class: "btn" %>
+      <% end %>
+    </header>
+    <main>
+      <% if notice %><div class="flash notice"><%= notice %></div><% end %>
+      <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

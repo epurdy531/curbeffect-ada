@@ -1,0 +1,6 @@
+<% content_for :title, "Edit #{@contract_request.organization_name}" %>
+
+<div class="card" style="max-width:560px">
+  <h3 style="margin:0 0 12px"><%= @contract_request.organization_name.presence || "Edit contract request" %></h3>
+  <%= render "form", url: contract_request_path(@contract_request), method: :patch, submit_label: "Save" %>
+</div>

@@ -1,0 +1,51 @@
+<% content_for :title, @entity.entity_name %>
+
+<div class="card">
+  <div class="inline" style="justify-content:space-between">
+    <h2 style="margin:0">
+      <% if @entity.priority.present? %><span class="pill <%= @entity.priority %>"><%= @entity.priority %></span><% end %>
+      <%= @entity.entity_name %>
+    </h2>
+    <div class="inline">
+      <%= button_to "Scan now", entity_scan_path(@entity), class: "btn", form: { style: "margin:0" } %>
+      <%= link_to "Edit", edit_entity_path(@entity), class: "btn secondary" %>
+    </div>
+  </div>
+  <p class="muted" style="margin:6px 0">
+    <%= link_to @entity.url, @entity.url, target: "_blank" %>
+    <% if @entity.scrapable_url.present? %> · scrapable: <%= link_to @entity.scrapable_url, @entity.scrapable_url, target: "_blank" %><% end %>
+  </p>
+  <p>
+    <strong>Contact:</strong> <%= @entity.contact_name %><%= " — #{@entity.contact_title}" if @entity.contact_title.present? %>
+    <% unless @entity.contact_email.to_s.include?("placeholder.invalid") %> · <%= @entity.contact_email %><% end %>
+    <br><strong>Platform:</strong> <%= @entity.platform %>
+    <% if @entity.call_date || @entity.email_date %><br><strong>Contacted:</strong>
+      <%= "Email #{@entity.email_date}" if @entity.email_date %> <%= "Call #{@entity.call_date}" if @entity.call_date %><% end %>
+  </p>
+  <% if @entity.notes.present? %><p class="muted"><%= @entity.notes %></p><% end %>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Scan results <span class="muted">(<%= @docs.size %> PDFs)</span></h3>
+  <% if @docs.empty? %>
+    <p class="muted">No PDFs scanned yet. Click “Scan now” — results appear here on refresh.</p>
+  <% else %>
+    <table>
+      <thead><tr><th>PDF</th><th>Failures / checks</th><th>Tagged?</th></tr></thead>
+      <tbody>
+        <% @docs.each do |d| r = d.verapdf_report %>
+          <tr>
+            <td><%= link_to d.file_name, d.source_url, target: "_blank" %></td>
+            <td><% if r %><%= number_with_delimiter r.report_failures %> / <%= number_with_delimiter r.report_total_checks %><% end %></td>
+            <td>
+              <% if r&.tagged == false %><span class="untagged">⚠ UNTAGGED</span>
+              <% elsif r&.tagged == true %><span class="tagged">tagged*</span>
+              <% else %><span class="muted">—</span><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p class="muted" style="margin-top:8px">*“tagged” only means a structure tree exists — not that it’s accessible. Verify manually.</p>
+  <% end %>
+</div>

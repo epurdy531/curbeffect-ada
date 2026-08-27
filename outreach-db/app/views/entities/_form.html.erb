@@ -1,0 +1,36 @@
+<%= form_with model: entity, class: "card" do |f| %>
+  <% if entity.errors.any? %>
+    <div class="errors"><%= entity.errors.full_messages.to_sentence %></div>
+  <% end %>
+
+  <label>Entity name</label><%= f.text_field :entity_name %>
+  <label>Website URL</label><%= f.url_field :url %>
+  <label>Scrapable URL <span class="muted">(optional — a page that directly lists PDFs; the scanner uses this instead of crawling the homepage)</span></label>
+  <%= f.url_field :scrapable_url %>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+    <div><label>Contact name</label><%= f.text_field :contact_name %></div>
+    <div><label>Contact email <span class="muted">(blank = no email on file)</span></label><%= f.email_field :contact_email %></div>
+    <div><label>Title</label><%= f.text_field :contact_title %></div>
+    <div><label>Platform</label><%= f.text_field :platform %></div>
+    <div><label>State <span class="muted">(2-letter; auto-filled from name when blank)</span></label><%= f.text_field :state, maxlength: 2 %></div>
+    <div>
+      <label>Priority</label>
+      <%= f.select :priority, options_for_select(%w[High Medium Low], entity.priority), include_blank: "—" %>
+    </div>
+    <div><label>Call date</label><%= f.date_field :call_date %></div>
+    <div><label>Email date</label><%= f.date_field :email_date %></div>
+    <div>
+      <label>Accessible HTML alternative present?</label>
+      <%= f.select :html_present, options_for_select([["Unknown", ""], ["Yes", "true"], ["No", "false"]], entity.html_present.nil? ? "" : entity.html_present.to_s) %>
+    </div>
+    <div>
+      <label>Continue contact?</label>
+      <%= f.select :continue_contact, options_for_select([["Yes — keep pursuing", "true"], ["No — do not engage", "false"]], entity.continue_contact.to_s) %>
+    </div>
+  </div>
+
+  <label>Notes</label><%= f.text_area :notes, rows: 3 %>
+
+  <div style="margin-top:14px"><%= f.submit "Save", class: "btn" %> <%= link_to "Cancel", entities_path, class: "btn secondary" %></div>
+<% end %>

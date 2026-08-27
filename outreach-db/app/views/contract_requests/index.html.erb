@@ -1,0 +1,82 @@
+<% content_for :title, "Contract Requests" %>
+
+<div class="card" style="margin-bottom:18px">
+  <h3 style="margin:0 0 4px">Fiscal years by government type</h3>
+  <p class="muted" style="margin:0 0 12px">
+    Reference for timing RFP outreach. Dates are <strong>MM/DD - MM/DD</strong>.
+  </p>
+  <table style="max-width:640px">
+    <thead>
+      <tr>
+        <th>Government type</th>
+        <th>Fiscal year</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ContractRequest::FISCAL_YEARS.each do |fy| %>
+        <tr>
+          <td><%= fy[:type] %></td>
+          <td><%= fy[:dates] %></td>
+          <td><%= fy[:notes].presence %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; margin:6px 0">
+  <h3 style="margin:0">Contract Requests</h3>
+  <%= link_to "+ Add contract request", new_contract_request_path, class: "btn" %>
+</div>
+<p class="muted" style="margin:0 0 14px">
+  Track RFPs and contract opportunities here. Click an <strong>organization</strong> to edit it.
+  <%= @contract_requests.count %> total.
+</p>
+
+<% if @contract_requests.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Government type</th>
+        <th>Status</th>
+        <th>Due date</th>
+        <th>RFP link</th>
+        <th>Notes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contract_requests.each do |cr| %>
+        <tr>
+          <td><%= link_to cr.organization_name.presence || "(untitled)", edit_contract_request_path(cr) %></td>
+          <td><%= cr.government_type.presence || content_tag(:span, "—", class: "muted") %></td>
+          <td><%= cr.status.presence || content_tag(:span, "—", class: "muted") %></td>
+          <td>
+            <% if cr.due_date %>
+              <%= cr.due_date.strftime("%b %-d, %Y") %>
+            <% else %>
+              <span class="muted">—</span>
+            <% end %>
+          </td>
+          <td>
+            <% if cr.rfp_url.present? %>
+              <%= link_to "Open RFP", cr.rfp_url, target: "_blank", rel: "noopener" %>
+            <% else %>
+              <span class="muted">—</span>
+            <% end %>
+          </td>
+          <td><%= cr.notes.presence || content_tag(:span, "—", class: "muted") %></td>
+          <td>
+            <%= button_to "Delete", contract_request_path(cr), method: :delete,
+                  form: { onsubmit: "return confirm('Delete this contract request?')" },
+                  class: "btn secondary", style: "padding:3px 9px; font-size:12px" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="card muted">No contract requests yet. Click <strong>+ Add contract request</strong> to add one.</div>
+<% end %>
